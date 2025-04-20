@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  notifier:
+    build: .
+    ports:
+      - "9222:9222"
+    environment:
+      - DEBUG_ROCKNRIVER=${DEBUG_ROCKNRIVER}
+      - PUSHOVER_USER_KEY=${PUSHOVER_USER_KEY}
+      - PUSHOVER_API_TOKEN=${PUSHOVER_API_TOKEN}
+    volumes:
+      - .:/app
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
